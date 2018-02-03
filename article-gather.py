@@ -38,7 +38,4 @@ def article_gather(keyword):
 		'articles' : newsArticles
 	}
 
-	return newsArticlesDirectory
-
-with open("jsonfile.json", "w") as f:
-		json.dump(article_gather("Donald Trump"), f)
+	return json.dumps(newsArticlesDirectory)
