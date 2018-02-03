@@ -6,7 +6,7 @@ import './index.css';
 function Header({handleSearch}) {
     return (
         <header>
-            <img class src="/masthead.png" alt="The News Balance" />
+            <img class src="/img/masthead.png" alt="The News Balance" />
             <Search handleSearch={handleSearch} />
         </header>
     );

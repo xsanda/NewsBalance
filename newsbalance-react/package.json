@@ -1,6 +1,7 @@
 {
   "name": "newsbalance-react",
   "version": "0.1.0",
+  "homepage" : "/NewsBalance",
   "private": true,
   "dependencies": {
     "node-sass": "^4.7.2",
@@ -17,6 +18,7 @@
     "build-js": "react-scripts build",
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --env=jsdom",
+    "export": "npm run build && (rm build/*manifest* 2> /dev/null || true) && cp -r build/* ../ && rm -r build",
     "eject": "react-scripts eject"
   }
 }
