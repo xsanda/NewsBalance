@@ -5,7 +5,7 @@ import json
 def article_gather(keyword):
 	"The function returns a JSON object of the scraped data from the 20 most relevant news sources"
 	
-	newsApiUrl = ('https://newsapi.org/v2/everything?q=' + keyword + '&sortBy=relevance&apiKey=bb69ad9aebf04d738bd9442cca1eca7a')
+	newsApiUrl = ('https://newsapi.org/v2/everything?q=' + keyword + '&sortBy=relevance&language=en&from=2018-01-03&apiKey=bb69ad9aebf04d738bd9442cca1eca7a')
 
 	response = requests.get(newsApiUrl)
 
@@ -20,20 +20,25 @@ def article_gather(keyword):
 
 		try:
 			article.parse()
-			article.nlp()	
+			article.nlp()
+			articledict = {
+				'url' : url,
+				'title' : article.title,
+				'authors' : article.authors,
+				'text' : article.text,
+				'summary' : article.summary
+			}
+			newsArticles.append(articledict)
+	
 		except:
 			pass
 
-		articledict = {
-			'url' : url,
-			'title' : article.title,
-			'authors' : article.authors,
-			'text' : article.text,
-			'summary' : article.summary
-		}
-		newsArticles.append(articledict)
 
 	newsArticlesDirectory = {
 		'articles' : newsArticles
 	}
-	return json.dumps(newsArticlesDirectory)
+
+	return newsArticlesDirectory
+
+with open("jsonfile.json", "w") as f:
+		json.dump(article_gather("Donald Trump"), f)
