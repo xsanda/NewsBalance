@@ -12,16 +12,15 @@ from poc import polarize
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
-def test():
-    return Response('It works')
-
-@app.route('/<searchTerms>', methods=['GET'])
-def retrieveResults(searchTerms):
+def retrieveResults():
+    searchTerms = request.args.get("q")
     # newsApiResult is a list of articles
     newsApiResult = article_gather(searchTerms)
     # Contains a list ordered by spectrum
-    articlesResult = polarize(newsApiResult)
+    articlesResult = polarize(newsApiResult["articles"])
 
     # Return final result to request
     return jsonify(result=articlesResult)
 
+if __name__ == "__main__":
+    app.run()
