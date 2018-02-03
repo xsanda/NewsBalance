@@ -131,4 +131,22 @@ header {
             }
         }
     }
+
+    .news-description {
+        display: block;
+        text-decoration: none;
+        margin: 2rem 2rem 4rem;
+        padding: 1rem;
+        background-color: white;
+        border: 1px solid grey;
+        color: grey;
+        font-size: 1.1rem;
+
+        h4 {
+            display: inline;
+            color: black;
+            font-weight: normal;
+            font-size: 1.4em;
+        }
+    }
 }

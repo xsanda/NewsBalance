@@ -45,19 +45,19 @@ class App extends React.Component {
         }, {
             title: "Moderate 1",
             source: "The New Yorker",
-            url: 'https://wikipedia.com/',
+            url: 'https://wikipedia.org/',
             image: "https://ichef.bbci.co.uk/news/660/cpsprodpb/AD31/production/_99873344_gettyimages-856957494.jpg",
             summary: "A father and son have sold their two Cardiff cafes to test their new shark deterrent invention off South Africa.",
         }, {
             title: "Moderate 2",
             source: "The New Yorker",
-            url: 'https://wikipedia.com/',
+            url: 'https://wikipedia.org/',
             image: "https://ichef.bbci.co.uk/news/660/cpsprodpb/AD31/production/_99873344_gettyimages-856957494.jpg",
             summary: "A father and son have sold their two Cardiff cafes to test their new shark deterrent invention off South Africa.",
         }, {
             title: "Three men charged with inmate's murder",
             source: "The New Yorker",
-            url: 'https://wikipedia.com/',
+            url: 'https://wikipedia.org/',
             image: "https://ichef.bbci.co.uk/news/660/cpsprodpb/AD31/production/_99873344_gettyimages-856957494.jpg",
             summary: "A father and son have sold their two Cardiff cafes to test their new shark deterrent invention off South Africa.",
         }];
