@@ -1,41 +1,42 @@
 from newspaper import Article
+from multiprocessing import Pool
 import requests
 import json
 
+def download(url):
+    url = url['url']
+    print("downloading: ", url)
+    article = Article(url)
+    article.download()
+    print("downloaded: ", url)
+    
+    try:
+        article.parse()
+        articledict = {
+            'url' : url,
+            'title' : article.title,
+            'authors' : article.authors,
+            'text' : article.text,
+            'summary' : article.text[:100] + '...'
+        }
+        print("done with:", url)
+        return articledict
+    except:
+        pass
+
 def article_gather(keyword):
-	"The function returns a JSON object of the scraped data from the 20 most relevant news sources"
-	
-	newsApiUrl = ('https://newsapi.org/v2/everything?q=' + keyword + '&sortBy=relevance&language=en&from=2018-01-03&apiKey=bb69ad9aebf04d738bd9442cca1eca7a')
+    "The function returns a JSON object of the scraped data from the 20 most relevant news sources"
+    
+    newsApiUrl = ('https://newsapi.org/v2/everything?q=' + keyword + '&sortBy=popularity&language=en&from=2018-01-03&apiKey=bb69ad9aebf04d738bd9442cca1eca7a')
+    response = requests.get(newsApiUrl)
 
-	response = requests.get(newsApiUrl)
+    data = response.json()
 
-	data = response.json()
+    newsArticles = []
+    with Pool(20) as p:
+        newsArticles = p.map(download, data['articles'])
+        newsArticlesDirectory = {
+        'articles' : newsArticles
+        }
 
-	newsArticles = []
-
-	for entry in data['articles']:
-		url = entry['url']
-		article = Article(url)
-		article.download()
-
-		try:
-			article.parse()
-			article.nlp()
-			articledict = {
-				'url' : url,
-				'title' : article.title,
-				'authors' : article.authors,
-				'text' : article.text,
-				'summary' : article.summary
-			}
-			newsArticles.append(articledict)
-	
-		except:
-			pass
-
-
-	newsArticlesDirectory = {
-		'articles' : newsArticles
-	}
-
-	return newsArticlesDirectory
+    return newsArticlesDirectory
