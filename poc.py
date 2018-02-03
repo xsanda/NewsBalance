@@ -11,4 +11,5 @@ def doc2vec(doc):
 
 def polarize(docs):
     docs = [doc for doc in docs if len(nltk.word_tokenize(doc["text"])) > 50]
-    return list(max(itertools.combinations(docs, 2), key = lambda doc_1_2: scipy.spatial.distance.cosine(doc2vec(doc_1_2[0]["text"]), doc2vec(doc_1_2[1]["text"]))))
+    furthest = max(itertools.combinations(docs, 2), key = lambda doc_1_2: scipy.spatial.distance.cosine(doc2vec(doc_1_2[0]["text"]), doc2vec(doc_1_2[1]["text"])))
+    return list(sorted(docs, key=lambda doc: scipy.spatial.distance.cosine(doc2vec(doc["text"]), doc2vec(furthest[0]["text"]))))
