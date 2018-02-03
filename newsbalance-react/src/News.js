@@ -31,7 +31,7 @@ export function NewsStory({articles}) {
 
             <div className="news-spectrum">
                 {articles.slice(1,-1).map((article,i) => (
-                    <NewsDescription article={article} />
+                    <NewsDescription article={article} key={i} />
                 ))}
             </div>
         </div>

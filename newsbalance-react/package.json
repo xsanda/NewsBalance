@@ -1,14 +1,16 @@
 {
   "name": "newsbalance-react",
   "version": "0.1.0",
-  "homepage" : "/NewsBalance",
+  "homepage": "/NewsBalance",
   "private": true,
   "dependencies": {
     "node-sass": "^4.7.2",
     "npm-run-all": "^4.1.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.1.0"
+    "react-fontawesome": "^1.6.1",
+    "react-scripts": "1.1.0",
+    "webpack": "^3.10.0"
   },
   "scripts": {
     "build-css": "node-sass src/ -o src/",

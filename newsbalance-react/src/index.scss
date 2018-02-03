@@ -22,41 +22,57 @@ header {
         transition: padding 1s;
 
         .empty & {
-            padding: 20vh 0 10vh;
+            padding: 20vh 1rem 10vh;
         }
     }
 
-    .search {
-        width: 100%;
-        max-width: 40rem;
-        margin: 0 auto;
+    form {
         padding: 0 1rem;
+        text-align: center;
+        .search {
+            display: inline-block;
+            width: calc(100% - 6rem);
+            max-width: 34rem;
+            margin: 0 auto;
+    
+            input {
+                font: inherit;
+                font-size: 1.75rem;
+                font-weight: 300;
+                border: 1px solid lightgrey;
+                border-right: none;
+                width: 100%;
+                box-sizing: border-box;
+                outline: none;
+                padding: 0.5rem 1rem;
+    
+                &::placeholder {
+                    color: #ccc;
+                }
+    
+                &::-moz-placeholder {
+                    color: #ccc;
+                }
+    
+                &::-webkit-placeholder {
+                    color: #ccc;
+                }
+    
+                &::-ms-input-placeholder {
+                    color: #ccc;
+                }
+            }
+        }
 
-        input {
-            font: inherit;
+        button {
             font-size: 1.75rem;
-            font-weight: 300;
+            background-color: darkgrey;
             border: 1px solid lightgrey;
-            width: 100%;
-            box-sizing: border-box;
+            color: white;
+            padding: 0.5rem 0;
+            width: 4rem;
             outline: none;
-            padding: 0.5rem 1rem;
-
-            &::placeholder {
-                color: #ccc;
-            }
-
-            &::-moz-placeholder {
-                color: #ccc;
-            }
-
-            &::-webkit-placeholder {
-                color: #ccc;
-            }
-
-            &::-ms-input-placeholder {
-                color: #ccc;
-            }
+            text-align: center;
         }
     }
 }
@@ -149,4 +165,13 @@ header {
             font-size: 1.4em;
         }
     }
+}
+
+.spinner {
+    background-size: 400px 300px;
+    background-position: center;
+    background-image: url(book.gif);
+    width: 200px;
+    height: 200px;
+    margin: 10vh auto 0;
 }
