@@ -1,6 +1,26 @@
 from newspaper import Article
 import requests
 import json
+import time
+from multiprocessing import Pool
+
+def download(url):
+	url = url['url']
+	article = Article(url)
+	article.download()
+
+	try:
+		article.parse()
+		articledict = {
+			'url' : url,
+			'title' : article.title,
+			'authors' : article.authors,
+			'text' : article.text,
+			'summary' : article.text[:100] + '...'
+		}
+		return articledict
+	except:
+		pass
 
 def article_gather(keyword):
 	"The function returns a JSON object of the scraped data from the 20 most relevant news sources"
@@ -12,33 +32,11 @@ def article_gather(keyword):
 	data = response.json()
 
 	newsArticles = []
-
-	for entry in data['articles']:
-		url = entry['url']
-		article = Article(url)
-		article.download()
-
-		try:
-			article.parse()
-			article.nlp()
-			articledict = {
-				'url' : url,
-				'title' : article.title,
-				'authors' : article.authors,
-				'text' : article.text,
-				'summary' : article.summary
-			}
-			newsArticles.append(articledict)
-	
-		except:
-			pass
-
+	with Pool(20) as p:
+		newsArticles = p.map(download, data['articles'])
 
 	newsArticlesDirectory = {
 		'articles' : newsArticles
 	}
 
-	return newsArticlesDirectory
-
-with open("jsonfile.json", "w") as f:
-		json.dump(article_gather("Donald Trump"), f)
+	return json.dumps(newsArticlesDirectory)
