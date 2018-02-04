@@ -23,9 +23,12 @@ def download(post):
         article.parse()
         articledict = {
             'url' : url,
+            'source': article.source_url,
             'title' : article.title,
+            'date': article.publish_date,
             'authors' : article.authors,
             'text' : article.text,
+            'img': article.top_image,
             'summary' : article.text[:100] + '...'
         }
         #print(articledict)
@@ -58,7 +61,8 @@ def article_gather(keyword):
     data = response.json()
     newsArticles = []
     if len(data['posts']) == 0:
-        return newsArticles
+        return {'articles': []}
+    data["posts"] = data["posts"][:20]
     with Pool(len(data['posts'])) as p:
         newsArticles = p.map(download, data['posts'])
 

@@ -29,19 +29,19 @@ function NewsDescription({article: {title, url, source, date}, newCol}) {
     )
 }
 
-export function NewsStory({articles}) {
+export function NewsStory({articles: {result}}) {
     return (
         <div className="news-story">
             <div className="news-views">
-                <NewsView article={articles[0][0]} />
-                <NewsView article={articles[1][0]} />
+                <NewsView article={result[0][0]} />
+                <NewsView article={result[1][0]} />
             </div>
 
             <div className="news-spectrum">
-                {articles.map((cluster,i) => (
-                    cluster.slice(1).map((article,j) => (
+                {result.map((cluster,i) => (
+                    cluster.slice(1).map((result,j) => (
                     <NewsDescription
-                        article={article}
+                        article={result}
                         key={j*2+i}
                         newCol={j === 0} />
                 ))))}

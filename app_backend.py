@@ -20,7 +20,9 @@ def retrieveResults():
     articlesResult = polarize(newsApiResult["articles"])
 
     # Return final result to request
-    return jsonify(result=articlesResult)
+    result = jsonify(result=articlesResult)
+    result.headers['Access-Control-Allow-Origin'] = '*'
+    return result
 
 if __name__ == "__main__":
     app.run()
