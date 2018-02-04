@@ -1,5 +1,4 @@
 import React from 'react';
-import parseDomain from 'parse-domain';
 
 function parseDomain(url) {
     return /\/\/(?:www\.)?([^/]+)/.exec(url)[1] || url;
