@@ -112,16 +112,20 @@ header {
 
                 span {
                     display: block;
+                    padding: 1em;
+                    box-sizing: border-box;
+                    font-size: 2rem;
+                    font-weight: normal;
+                }
+
+                &.image span {
                     position: absolute;
                     bottom: 0;
                     left: 0;
                     width: 100%;
-                    color: white;
-                    padding: 1em;
-                    background: rgba(64,64,64,0.5);
-                    box-sizing: border-box;
                     font-size: 1.5rem;
-                    font-weight: normal;
+                    color: white;
+                    background: rgba(64,64,64,0.5);
 
                     &::before {
                         content: '';
@@ -165,6 +169,8 @@ header {
             font-size: 1.1rem;
 
             &.new-col {
+                -moz-column-break-before: always;
+                -webkit-column-break-before: always;
                 break-before: column;
             }
 
