@@ -25,7 +25,6 @@ def download(post):
             'url' : url,
             'source': article.source_url,
             'title' : article.title,
-            'date': article.publish_date,
             'authors' : article.authors,
             'text' : article.text,
             'img': article.top_image,
