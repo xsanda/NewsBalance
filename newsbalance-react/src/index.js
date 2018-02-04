@@ -6,16 +6,29 @@ import {NewsStory} from './News';
 import masthead from './masthead.png';
 import './index.css';
 
-function Header({handleSearch}) {
-    return (
-        <header>
-            <img src={masthead} alt="The News Balance" />
-            <Search handleSearch={handleSearch} />
-        </header>
-    );
+class Header extends React.Component {
+    clear() {
+        this.props.handleSearch("");
+        this.refs.search.setValue("");
+    };
+    
+    render() {
+        const {handleSearch} = this.props;
+        return (
+            <header>
+                <img src={masthead} alt="The News Balance" onClick={this.clear.bind(this)} />
+                <Search ref="search" handleSearch={handleSearch} />
+            </header>
+        );
+    }
 }
 
 class Search extends React.Component {
+    setValue(str) {
+        this.refs.search.value = str;
+        if (!str) this.refs.search.focus();
+    }
+
     handleSubmit(e) {
         e.preventDefault();
         const term = this.refs.search.value;
@@ -25,7 +38,7 @@ class Search extends React.Component {
 
     componentDidMount() {
         if (window.location.hash) {
-            this.refs.search.value = window.location.hash.slice(1);
+            this.setValue(window.location.hash.slice(1));
         }
     }
 
