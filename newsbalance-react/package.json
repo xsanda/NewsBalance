@@ -6,7 +6,6 @@
   "dependencies": {
     "node-sass": "^4.7.2",
     "npm-run-all": "^4.1.2",
-    "parse-domain": "^2.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-fontawesome": "^1.6.1",

@@ -46,31 +46,27 @@ function Spinner() {
 class App extends React.Component {
     async doSearch(q) {
         await new Promise(resolve => setTimeout(resolve, 10000));
-        return [{
+        return [[{
             title: q+" fighter jet shot down in Syria",
-            source: "The New York Post",
             url: 'https://google.com/',
             image: "https://ichef-1.bbci.co.uk/news/660/cpsprodpb/5485/production/_99873612_colne-station.jpg",
             summary: "Prominent Brexiteer Jacob Rees-Mogg has accused Treasury officials of \"fiddling the figures\" on Brexit to keep the UK in the European Union customs union."
         }, {
             title: "Moderate 1 about "+q,
-            source: "The New Yorker",
             url: 'https://wikipedia.org/',
             image: "https://ichef.bbci.co.uk/news/660/cpsprodpb/AD31/production/_99873344_gettyimages-856957494.jpg",
             summary: "A father and son have sold their two Cardiff cafes to test their new shark deterrent invention off South Africa.",
-        }, {
+        }], [{
             title: "Moderate 2 on the topic of "+q,
-            source: "The New Yorker",
             url: 'https://wikipedia.org/',
             image: "https://ichef.bbci.co.uk/news/660/cpsprodpb/AD31/production/_99873344_gettyimages-856957494.jpg",
             summary: "A father and son have sold their two Cardiff cafes to test their new shark deterrent invention off South Africa.",
         }, {
             title: "Three men charged with "+q+"'s murder",
-            source: "The New Yorker",
             url: 'https://wikipedia.org/',
             image: "https://ichef.bbci.co.uk/news/660/cpsprodpb/AD31/production/_99873344_gettyimages-856957494.jpg",
             summary: "A father and son have sold their two Cardiff cafes to test their new shark deterrent invention off South Africa.",
-        }];
+        }]];
     }
 
     constructor(props) {
