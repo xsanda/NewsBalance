@@ -46,7 +46,10 @@ function Spinner() {
 
 class App extends React.Component {
     async doSearch(q) {
-        return await request({uri: "http://localhost:5000/", qs: {q}, json: true});
+        return await request({uri: "http://localhost:5000/", qs: {q}, json: true})
+            .catch(() => {
+                this.setState({searching: false, searchResults: null});
+            });
     }
 
     constructor(props) {
