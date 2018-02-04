@@ -1,5 +1,8 @@
 import React from 'react';
-import parseDomain from 'parse-domain';
+
+function parseDomain(url) {
+    return /\/\/(?:www\.)?([^/]+)/.exec(url)[1] || url;
+}
 
 function NewsView({article: {title, url, image, summary, source, date}}) {
     const {domain, tld} = parseDomain(source || url);
