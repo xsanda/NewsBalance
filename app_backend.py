@@ -19,7 +19,7 @@ cache = redis.StrictRedis(host="localhost", port=6379, db=0)
 @app.route('/', methods=['GET'])
 def retrieveResults():
     searchTerms = request.args.get("q")
-    if cache.get(searchTerms):
+    if cache.get(searchTerms.lower().strip()):
         result = jsonify(result=json.loads(cache.get(searchTerms)))
         result.headers['Access-Control-Allow-Origin'] = '*'
         return result
@@ -28,7 +28,7 @@ def retrieveResults():
         newsApiResult = article_gather(searchTerms)
         # Contains a list ordered by spectrum
         articlesResult = polarize(newsApiResult["articles"])
-        cache.set(searchTerms, json.dumps(articlesResult))
+        cache.set(searchTerms.lower().strip(), json.dumps(articlesResult))
 
         # Return final result to request
         result = jsonify(result=articlesResult)
