@@ -57,8 +57,8 @@ def article_gather(keyword):
     response = requests.get(newsApiUrl+'?'+qsa)
     data = response.json()
     newsArticles = []
-    data['posts'] = data['posts'][:20]
-    print(data)
+    if len(data['posts']) == 0:
+        return newsArticles
     with Pool(len(data['posts'])) as p:
         newsArticles = p.map(download, data['posts'])
 
