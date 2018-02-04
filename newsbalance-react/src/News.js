@@ -30,24 +30,24 @@ function NewsDescription({article: {title, url, source, date}}) {
     )
 }
 
-export function NewsStory({articles}) {
+export function NewsStory({articles: {result}}) {
     return (
         <div className="news-story">
             <div className="news-views">
-                <NewsView article={articles[0][0]} />
-                <NewsView article={articles[1][0]} />
+                <NewsView article={result[0][0]} />
+                <NewsView article={result[1][0]} />
             </div>
 
             <div className="news-spectrum">
                 <div>
-                    {articles[0].slice(1).map((article,i) => (
+                    {result[0].slice(1).map((article,i) => (
                         <NewsDescription
                             article={article}
                             key={i} />
                     ))}
                 </div>
                 <div>
-                    {articles[1].slice(1).map((article,i) => (
+                    {result[1].slice(1).map((article,i) => (
                         <NewsDescription
                             article={article}
                             key={i} />
