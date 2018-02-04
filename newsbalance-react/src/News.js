@@ -21,11 +21,11 @@ function NewsView({article: {title, url, image, summary, source, date}}) {
     )
 }
 
-function NewsDescription({article: {title, url, source, date}, newCol}) {
+function NewsDescription({article: {title, url, source, date}}) {
     const {domain, tld} = parseDomain(source || url);
     const site = `${domain}.${tld}`;
     return (
-        <a href={url} className={"news-description " + (newCol ? "new-col" : "")}>
+        <a href={url} className={"news-description"}>
             <h4>{title}</h4>
             {site || date ? ' – ' : ''}{site || ''}{site && date ? ' · ' : ''}{date || ''}
         </a>
@@ -41,13 +41,20 @@ export function NewsStory({articles}) {
             </div>
 
             <div className="news-spectrum">
-                {articles.map((cluster,i) => (
-                    cluster.slice(1).map((article,j) => (
-                    <NewsDescription
-                        article={article}
-                        key={j*2+i}
-                        newCol={j === 0} />
-                ))))}
+                <div>
+                    {articles[0].slice(1).map((article,i) => (
+                        <NewsDescription
+                            article={article}
+                            key={i} />
+                    ))}
+                </div>
+                <div>
+                    {articles[1].slice(1).map((article,i) => (
+                        <NewsDescription
+                            article={article}
+                            key={i} />
+                    ))}
+                </div>
             </div>
         </div>
     );

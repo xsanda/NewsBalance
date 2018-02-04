@@ -154,8 +154,16 @@ header {
     }
 
     .news-spectrum {
-        column-count: 2;
+        display: flex;
+        flex-wrap: wrap;
         padding-bottom: 2rem;
+
+        div {
+            display: inline-block;
+            flex-basis: 26rem;
+            flex-grow: 1;
+            width: 36rem;
+        }
 
         .news-description {
             align-items: stretch;
