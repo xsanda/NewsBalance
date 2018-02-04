@@ -1,13 +1,13 @@
 import React from 'react';
 
-function NewsView({article: {title, url, image, summary, source}}) {
+function NewsView({article: {title, url, image, summary, source, date}}) {
     return (
         <a href={url} className="news-view">
             <h3 style={{backgroundImage: `url(${image})`}}>
                 <img src={image} alt="" />
                 <span>{title}</span>
             </h3>
-            <h6>{source}</h6>
+            <h6>{source} – {date}</h6>
             <p>{summary}</p>
         </a>
     )
