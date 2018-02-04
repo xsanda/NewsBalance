@@ -22,6 +22,13 @@ class Search extends React.Component {
         this.refs.search.blur();
         this.props.handleSearch(term);
     }
+
+    componentDidMount() {
+        if (window.location.hash) {
+            this.refs.search.value = window.location.hash.slice(1);
+        }
+    }
+
     render() {
         return (
             <form onSubmit={this.handleSubmit.bind(this)}>
@@ -46,6 +53,7 @@ function Spinner() {
 
 class App extends React.Component {
     async doSearch(q) {
+        if (!q) return null;
         return await request({uri: "http://localhost:5000/", qs: {q}, json: true})
             .catch(() => {
                 this.setState({searching: false, searchResults: null});
@@ -56,11 +64,19 @@ class App extends React.Component {
         super(props);
         this.state = {searching: false, searchResults: null};
         this.handleSearch = async term => {
+            window.location.hash = term;
             this.setState({searching: true, searchResults: null});
             let searchResults = await this.doSearch(term);
             this.setState({searchResults, searching: false});
         };
     }
+
+    componentDidMount() {
+        if (window.location.hash) {
+            this.handleSearch(window.location.hash.slice(1));
+        }
+    }
+
     render() {
         return (
             <div className={this.state.searchResults ? [] : ["empty"]}>
