@@ -5,8 +5,7 @@ function parseDomain(url) {
 }
 
 function NewsView({article: {title, url, image, summary, source, date}}) {
-    const {domain, tld} = parseDomain(source || url);
-    const site = `${domain}.${tld}`;
+    const domain = parseDomain(source || url);
     return (
         <a href={url} className="news-view">
             <h3 
@@ -15,7 +14,7 @@ function NewsView({article: {title, url, image, summary, source, date}}) {
                 <img src={image} alt="" />
                 <span>{title}</span>
             </h3>
-            <h6>{site}{date ? ` · ${date}` : ''}</h6>
+            <h6>{domain}{date ? ` · ${date}` : ''}</h6>
             <p>{summary}</p>
         </a>
     )
