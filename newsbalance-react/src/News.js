@@ -1,22 +1,30 @@
 import React from 'react';
+import parseDomain from 'parse-domain';
 
-function NewsView({article: {title, url, image, summary, source}}) {
+function NewsView({article: {title, url, image, summary, source, date}}) {
+    const {domain, tld} = parseDomain(source || url);
+    const site = `${domain}.${tld}`;
     return (
         <a href={url} className="news-view">
-            <h3 style={{backgroundImage: `url(${image})`}}>
+            <h3 
+                className={image ? "image" : ""}
+                style={{backgroundImage: `url(${image})`}}>
                 <img src={image} alt="" />
                 <span>{title}</span>
             </h3>
-            <h6>{source}</h6>
+            <h6>{site}{date ? ` · ${date}` : ''}</h6>
             <p>{summary}</p>
         </a>
     )
 }
 
-function NewsDescription({article: {title, url, source}, newCol}) {
+function NewsDescription({article: {title, url, source, date}, newCol}) {
+    const {domain, tld} = parseDomain(source || url);
+    const site = `${domain}.${tld}`;
     return (
         <a href={url} className={"news-description " + (newCol ? "new-col" : "")}>
-            <h4>{title}</h4> – {source}
+            <h4>{title}</h4>
+            {site || date ? ' – ' : ''}{site || ''}{site && date ? ' · ' : ''}{date || ''}
         </a>
     )
 }
