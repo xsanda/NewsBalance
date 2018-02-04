@@ -22,12 +22,11 @@ function NewsView({article: {title, url, image, summary, source, date}}) {
 }
 
 function NewsDescription({article: {title, url, source, date}}) {
-    const {domain, tld} = parseDomain(source || url);
-    const site = `${domain}.${tld}`;
+    const domain = parseDomain(source || url);
     return (
         <a href={url} className={"news-description"}>
             <h4>{title}</h4>
-            {site || date ? ' – ' : ''}{site || ''}{site && date ? ' · ' : ''}{date || ''}
+            {domain || date ? ' – ' : ''}{domain || ''}{domain && date ? ' · ' : ''}{date || ''}
         </a>
     )
 }
