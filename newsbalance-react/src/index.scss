@@ -1,0 +1,178 @@
+body {
+    font: 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    margin: 0px;
+    background: #eee;
+}
+
+header {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+
+    img {
+        width: 100%;
+        max-width: 40rem;
+        display: block;
+        box-sizing: border-box;
+        padding: 0 1rem;
+        margin: 0.5rem auto;
+        font-weight: normal;
+        text-align: center;
+
+        transition: padding 1s;
+
+        .empty & {
+            padding: 20vh 1rem 10vh;
+        }
+    }
+
+    form {
+        text-align: center;
+        margin-bottom: 2rem;
+
+        .search {
+            display: inline-block;
+            width: calc(100% - 6rem);
+            max-width: 34rem;
+            margin: 0 auto;
+    
+            input {
+                font: inherit;
+                font-size: 1.75rem;
+                font-weight: 300;
+                border: 1px solid lightgrey;
+                border-right: none;
+                width: 100%;
+                box-sizing: border-box;
+                outline: none;
+                padding: 0.5rem 1rem;
+    
+                &::placeholder {
+                    color: #ccc;
+                }
+    
+                &::-moz-placeholder {
+                    color: #ccc;
+                }
+    
+                &::-webkit-placeholder {
+                    color: #ccc;
+                }
+    
+                &::-ms-input-placeholder {
+                    color: #ccc;
+                }
+            }
+        }
+
+        button {
+            font-size: 1.75rem;
+            background-color: darkgrey;
+            border: 1px solid lightgrey;
+            color: white;
+            padding: 0.5rem 0;
+            width: 4rem;
+            outline: none;
+            text-align: center;
+        }
+    }
+}
+
+.news-story {
+    .news-views {
+        display: flex;
+        flex-wrap: wrap;
+
+        .news-view {
+            display: inline-block;
+            flex-basis: 20rem;
+            flex-grow: 1;
+            text-decoration: none;
+            margin: 2rem 2rem 2rem;
+            width: 30rem;
+            background-color: white;
+            border: 1px solid grey;
+            border-radius: 0 /* 1rem */;
+            overflow: hidden;
+            box-sizing: border-box;
+            vertical-align: top;
+            color: black;
+            font-size: 0;
+
+            h3 {
+                margin: 0;
+                position: relative;
+                background-position: bottom center;
+                background-size: 100%;
+
+                img {
+                    opacity: 0;
+                    width: 100%;
+                }
+
+                span {
+                    display: block;
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    color: white;
+                    padding: 1em;
+                    background: rgba(64,64,64,0.5);
+                    box-sizing: border-box;
+                    font-size: 1.5rem;
+                    font-weight: normal;
+
+                    &::before {
+                        content: '';
+                        left: 0;
+                        position: absolute;
+                        height: 100%;
+                        width: 100%;
+                        bottom: 100%;
+                        background: linear-gradient(0deg,rgba(64,64,64,0.5),transparent);
+                    }
+                }
+            }
+
+            h6 {
+                font-weight: normal;
+                font-size: 1.2rem;
+                margin: 1rem 1rem;
+                color: grey;
+            }
+
+            p {
+                margin: 1em;
+                font-size: 1.1rem;
+            }
+        }
+    }
+
+    .news-description {
+        display: block;
+        text-decoration: none;
+        margin: 2rem 2rem 4rem;
+        padding: 1rem;
+        background-color: white;
+        border: 1px solid grey;
+        color: grey;
+        font-size: 1.1rem;
+
+        h4 {
+            display: inline;
+            color: black;
+            font-weight: normal;
+            font-size: 1.4em;
+        }
+    }
+}
+
+.spinner {
+    background-size: 400px 300px;
+    background-position: center;
+    background-image: url(book.gif);
+    width: 200px;
+    height: 200px;
+    margin: 10vh auto 0;
+}

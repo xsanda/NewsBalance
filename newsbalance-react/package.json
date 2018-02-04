@@ -1,0 +1,26 @@
+{
+  "name": "newsbalance-react",
+  "version": "0.1.0",
+  "homepage": "/NewsBalance",
+  "private": true,
+  "dependencies": {
+    "node-sass": "^4.7.2",
+    "npm-run-all": "^4.1.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-fontawesome": "^1.6.1",
+    "react-scripts": "1.1.0",
+    "webpack": "^3.10.0"
+  },
+  "scripts": {
+    "build-css": "node-sass src/ -o src/",
+    "watch-css": "npm run build-css && node-sass src/ -o src/ --watch --recursive",
+    "start-js": "react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "build-js": "react-scripts build",
+    "build": "npm-run-all build-css build-js",
+    "test": "react-scripts test --env=jsdom",
+    "export": "npm run build && (rm -r build/*manifest* ../static ../img ../*.html ../*.js 2> /dev/null || true) && cp -r build/* ../ && rm -r build",
+    "eject": "react-scripts eject"
+  }
+}
