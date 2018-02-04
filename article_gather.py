@@ -21,6 +21,7 @@ def download(post):
         article = newspaper.Article(url)
         article.download()
         article.parse()
+        article.fetch_images()
         articledict = {
             'url' : url,
             'source': article.source_url,
@@ -55,7 +56,6 @@ def article_gather(keyword):
             'spam_score:<0.25'
     }
     qsa = "&".join(key + "=" + urllib.parse.quote(value) for key,value in options.items())
-    print(newsApiUrl+'?'+qsa)
     response = requests.get(newsApiUrl+'?'+qsa)
     data = response.json()
     newsArticles = []
