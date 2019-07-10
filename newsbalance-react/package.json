@@ -4,15 +4,14 @@
   "homepage": "/NewsBalance",
   "private": true,
   "dependencies": {
-    "node-sass": "^4.7.2",
-    "npm-run-all": "^4.1.2",
-    "parse-domain": "^2.0.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "node-sass": "^4.12.0",
+    "npm-run-all": "^4.1.5",
+    "parse-domain": "^2.3.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-fontawesome": "^1.6.1",
-    "react-scripts": "1.1.0",
-    "request-promise-native": "^1.0.5",
-    "webpack": "^3.10.0"
+    "react-scripts": "^3.0.1",
+    "request-promise-native": "^1.0.7"
   },
   "scripts": {
     "build-css": "node-sass src/ -o src/",
@@ -24,5 +23,8 @@
     "test": "react-scripts test --env=jsdom",
     "export": "npm run build && (rm -r build/*manifest* ../static ../img ../*.html ../*.js 2> /dev/null || true) && cp -r build/* ../ && rm -r build",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "webpack": "^4.35.3"
   }
 }
